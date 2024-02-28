@@ -55,7 +55,7 @@
                                         </tr>
                                         <tr>
                                             <th>Data Sertifikat</th>
-                                            <th><a href="{{ $user['data_sertifikat'] ?: 'Belum terisi' }}" target="_blank"
+                                            <th><a href="{{ 'Data Sertifikat' ?: 'Belum terisi' }}" target="_blank"
                                                     rel="noopener noreferrer">{{ $user['data_sertifikat'] ?: 'Belum terisi' }}</a>
                                             </th>
                                         </tr>

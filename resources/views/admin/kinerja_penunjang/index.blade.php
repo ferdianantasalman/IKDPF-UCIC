@@ -55,9 +55,12 @@
                                             @foreach ($data as $dt)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->index + 1 }}.</td>
-                                                    <td>Ferdi</td>
+                                                    <td>{{ $dt->user->name ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->jenis_kegiatan ?: 'Belum terisi' }}</td>
-                                                    <td>{{ $dt->data_pendukung ?: 'Belum terisi' }}</td>
+                                                    <td><a href="{{ $dt->data_pendukung ?: 'Belum terisi' }}"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer">{{ $dt->data_pendukung ?: 'Belum terisi' }}</a>
+                                                    </td>
                                                     <td>{{ $dt->sks ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->pelaksanaan ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->tahun_akademik ?: 'Belum terisi' }}</td>

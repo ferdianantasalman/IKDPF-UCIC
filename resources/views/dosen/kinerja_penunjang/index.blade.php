@@ -55,7 +55,7 @@
                                             @foreach ($data as $dt)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->index + 1 }}.</td>
-                                                    <td>Ferdi</td>
+                                                    <td>{{ $dt->user->name ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->jenis_kegiatan ?: 'Belum terisi' }}</td>
                                                     <td><a href="{{ $dt->data_pendukung ?: 'Belum terisi' }}"
                                                             target="_blank"
@@ -69,7 +69,8 @@
                                                             <a href="{{ route('kinerja_penunjang.edit', $dt->id) }}"
                                                                 class="btn btn-icon btn-primary"><i
                                                                     class="fas fa-edit"></i></a>
-                                                            <form action="{{ route('kinerja_penunjang.destroy', $dt->id) }}"
+                                                            <form
+                                                                action="{{ route('kinerja_penunjang.destroy', $dt->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')

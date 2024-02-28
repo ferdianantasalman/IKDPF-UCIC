@@ -42,6 +42,7 @@
                                                 <th class="text-center">
                                                     No
                                                 </th>
+                                                <th>Nama</th>
                                                 <th>Kegiatan</th>
                                                 <th>Data Dukung</th>
                                                 <th>SKS</th>
@@ -54,6 +55,7 @@
                                             @foreach ($data as $dt)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->index + 1 }}.</td>
+                                                    <td>{{ $dt->user->name ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->jenis_kegiatan ?: 'Belum terisi' }}</td>
                                                     <td><a href="{{ $dt->data_pendukung ?: 'Belum terisi' }}"
                                                             target="_blank"

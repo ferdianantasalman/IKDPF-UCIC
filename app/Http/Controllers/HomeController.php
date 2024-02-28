@@ -23,7 +23,9 @@ class HomeController extends Controller
 
         $type_menu = 'dashboard';
 
-        $user_count = User::all()->count();
+        $dosen_count = User::where('role', '=', 'dosen')->get()->count();
+        $prodi_count = User::where('role', '=', 'prodi')->get()->count();
+        $fakultas_count = User::where('role', '=', 'fakultas')->get()->count();
         $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->get()->count();
         $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->get()->count();
         $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->get()->count();
@@ -32,7 +34,9 @@ class HomeController extends Controller
         return view('admin.dashboard')->with([
             'user' => $user,
             'type_menu' => $type_menu,
-            'user_count' => $user_count,
+            'dosen_count' => $dosen_count,
+            'prodi_count' => $prodi_count,
+            'fakultas_count' => $fakultas_count,
             'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
             'kinerja_penelitian_count' => $kinerja_penelitian_count,
             'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
