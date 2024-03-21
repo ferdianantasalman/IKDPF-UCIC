@@ -93,6 +93,8 @@ class AuthController extends Controller
                 return redirect('dosen/dashboard');
             } elseif (Auth::user()->role == 'admin') {
                 return redirect('admin/dashboard');
+            } elseif (Auth::user()->role == 'mahasiswa') {
+                return redirect('mahasiswa/dashboard');
             }
         } else {
             return back()->withInput();

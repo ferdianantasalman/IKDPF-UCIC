@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('prodi.layouts.app')
 
 @section('title', 'Advanced Forms')
 
@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="{{ asset('assets_admin/library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
 @endpush
 
-@section('content-admin')
+@section('prodi-admin')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Ganti Password</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="/admin/dashboard">Ganti Passwor</a></div>
+                    <div class="breadcrumb-item active"><a href="/prodi/dashboard">Ganti Passwor</a></div>
                     {{-- <div class="breadcrumb-item"><a href="#">Data Dosen</a></div>
                     <div class="breadcrumb-item">Tambah Data</div> --}}
                 </div>
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="/admin/dashboard" class="btn btn-primary">Kembali</a>
+                                    <a href="/prodi/dashboard" class="btn btn-primary">Kembali</a>
                                 </form>
                             </div>
                         </div>

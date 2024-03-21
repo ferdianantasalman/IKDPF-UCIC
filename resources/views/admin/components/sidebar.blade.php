@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="/admin/dashboard">SIKAD UCIC</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
@@ -44,7 +44,51 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="nav-item dropdown {{ $type_menu === 'kinerja' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i>
+                    <span>Penilaian</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/pertanyaan_atasan">Penilaian Atasan</a>
+                    </li>
+                    <li class="{{ Request::is('features-post-create') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/pertanyaan_mahasiswa">Penilaian Mahasiswa</a>
+                    </li>
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/hasil_atasan">Hasil Penilaian Atasan</a>
+                    </li>
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/hasil_mahasiswa">Hasil Penilaian Mahasiswa</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- <li class="nav-item dropdown {{ $type_menu === 'kinerja' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i>
+                    <span>Jawaban</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/jawaban">Keseluruhan</a>
+                    </li>
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/jawaban_atasan">Penilaian Atasan</a>
+                    </li>
+                    <li class="{{ Request::is('features-post-create') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/jawaban_mahasiswa">Penilaian Mahasiswa</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown {{ $type_menu === 'kinerja' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i>
+                    <span>Hasil</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/kinerja_pendidikan">Penilaian Atasan</a>
+                    </li>
+                    <li class="{{ Request::is('features-post-create') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/kinerja_penelitian">Penilaian Mahasiswa</a>
+                    </li>
+                </ul>
+            </li> --}}
         </ul>
     </aside>
 </div>

@@ -28,6 +28,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <div class="card-header">
+                                <a href="{{ route('dosen.profile.edit', $user['id']) }}" class="btn btn-primary">Edit
+                                    Data</a>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class=" table-md table">
@@ -65,7 +69,7 @@
                                         </tr>
                                         <tr>
                                             <th>Perolehan NIDN</th>
-                                            <th>{{ \Carbon\Carbon::parse($user['tgl_nidn'])->translatedFormat('d F Y') ?: 'Belum terisi' }}
+                                            <th>{{ $user['tgl_nidn'] ? \Carbon\Carbon::parse($user['tgl_nidn'])->translatedFormat('d F Y') : 'Belum terisi' }}
                                             </th>
                                         </tr>
                                         <tr>
@@ -82,7 +86,7 @@
                                         </tr>
                                         <tr>
                                             <th>Tmt Fungsional</th>
-                                            <th>{{ \Carbon\Carbon::parse($user['tgl_fungsional'])->translatedFormat('d F Y') ?: 'Belum terisi' }}
+                                            <th>{{ $user['tgl_fungsional'] ? \Carbon\Carbon::parse($user['tgl_fungsional'])->translatedFormat('d F Y') : 'Belum terisi' }}
                                             </th>
                                         </tr>
                                         <tr>
@@ -91,7 +95,7 @@
                                         </tr>
                                         <tr>
                                             <th>Tmt Golongan</th>
-                                            <th>{{ \Carbon\Carbon::parse($user['tgl_golongan'])->translatedFormat('d F Y') ?: 'Belum terisi' }}
+                                            <th>{{ $user['tgl_golongan'] ? \Carbon\Carbon::parse($user['tgl_golongan'])->translatedFormat('d F Y') : 'Belum terisi' }}
                                             </th>
                                         </tr>
                                     </table>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->integer('nip')->unique()->nullable();
+            $table->integer('nim')->unique()->nullable();
             $table->string('name')->unique();
             $table->string('foto')->nullable();
             $table->integer('no_sertifikat')->nullable();
@@ -26,7 +27,7 @@ return new class extends Migration
             $table->string('golongan')->nullable();
             $table->date('tgl_golongan')->nullable();
             $table->string('pendidikan')->nullable();
-            $table->enum('role', ['admin', 'rektorat', 'fakultas', 'prodi', 'dosen']);
+            $table->enum('role', ['admin', 'rektorat', 'fakultas', 'prodi', 'dosen', 'mahasiswa']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

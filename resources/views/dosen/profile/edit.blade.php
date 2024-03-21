@@ -19,9 +19,8 @@
             <div class="section-header">
                 <h1>Edit Data Diri</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Master Data</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Dosen</a></div>
-                    <div class="breadcrumb-item">Tambah Data</div>
+                    <div class="breadcrumb-item active"><a href="/dosen/profile">Data Diri</a></div>
+                    <div class="breadcrumb-item">Edit Data Diri</div>
                 </div>
             </div>
 
@@ -32,7 +31,7 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <form action="{{ route('profile.update', $data->id) }}" method="POST"
+                                <form action="{{ route('dosen.profile.update', $data->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -51,7 +50,7 @@
                                                 onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                         </div>
                                         <div class="img-output mt-3 d-flex justify-content-start">
-                                            <img src="images/{{ old('foto', $data->foto) }}"
+                                            <img src="{{ url('images/' . old('foto', $data->foto)) }}"
                                                 onerror="this.onerror=null;this.src='{{ asset('assets_admin/img/avatar/avatar-5.png') }}';"
                                                 id="output" width="180">
                                         </div>

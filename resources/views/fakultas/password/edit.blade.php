@@ -19,7 +19,7 @@
             <div class="section-header">
                 <h1>Ganti Password</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="/admin/dashboard">Ganti Passwor</a></div>
+                    <div class="breadcrumb-item active"><a href="/fakultas/dashboard">Ganti Passwor</a></div>
                     {{-- <div class="breadcrumb-item"><a href="#">Data Dosen</a></div>
                     <div class="breadcrumb-item">Tambah Data</div> --}}
                 </div>
@@ -32,7 +32,7 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <form action="{{ route('fakultas.password.update', $data->id) }}" method="POST">
+                                <form action="{{ route('password.update', $data->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="/admin/dashboard" class="btn btn-primary">Kembali</a>
+                                    <a href="/fakultas/dashboard" class="btn btn-primary">Kembali</a>
                                 </form>
                             </div>
                         </div>

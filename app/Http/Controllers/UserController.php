@@ -282,7 +282,7 @@ class UserController extends Controller
         $request->validate([
             'nip' => 'required',
             'name' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            // 'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
             'no_sertifikat' => 'required',
             'data_sertifikat' => 'required',
             'nidn' => 'required',
@@ -296,7 +296,7 @@ class UserController extends Controller
         ], [
             'nip.required' => 'Nama wajib diisi',
             'name.required' => 'Nama wajib diisi',
-            'foto.image' => 'File poster harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
+            // 'foto.image' => 'File poster harus diisi dengan file jpeg, png, jpg, gif, svg, webp',
             'no_sertifikat.required' => 'no_sertifikat wajib diisi',
             'data_sertifikat.required' => 'data_sertifikat wajib diisi',
             'nidn.required' => 'nidn wajib diisi',
@@ -347,6 +347,7 @@ class UserController extends Controller
         // dd($data);
 
         $user->update($data);
+
 
         return redirect('/dosen/profile');
     }

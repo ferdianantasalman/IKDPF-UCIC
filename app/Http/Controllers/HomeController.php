@@ -50,7 +50,25 @@ class HomeController extends Controller
         $user = auth()->user();
         $type_menu = 'dashboard';
 
-        return view('rektorat.dashboard')->with(['user' => $user, 'type_menu' => $type_menu]);
+        $dosen_count = User::where('role', '=', 'dosen')->get()->count();
+        $prodi_count = User::where('role', '=', 'prodi')->get()->count();
+        $fakultas_count = User::where('role', '=', 'fakultas')->get()->count();
+        $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
+
+        return view('rektorat.dashboard')->with([
+            'user' => $user,
+            'type_menu' => $type_menu,
+            'dosen_count' => $dosen_count,
+            'prodi_count' => $prodi_count,
+            'fakultas_count' => $fakultas_count,
+            'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
+            'kinerja_penelitian_count' => $kinerja_penelitian_count,
+            'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
+            'kinerja_penunjang_count' => $kinerja_penunjang_count,
+        ]);
     }
 
     // Fakultas
@@ -59,7 +77,25 @@ class HomeController extends Controller
         $user = Auth::user();
         $type_menu = 'dashboard';
 
-        return view('fakultas.dashboard.')->with(['user' => $user, 'type_menu' => $type_menu]);
+        $dosen_count = User::where('role', '=', 'dosen')->get()->count();
+        $prodi_count = User::where('role', '=', 'prodi')->get()->count();
+        $fakultas_count = User::where('role', '=', 'fakultas')->get()->count();
+        $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
+
+        return view('fakultas.dashboard')->with([
+            'user' => $user,
+            'type_menu' => $type_menu,
+            'dosen_count' => $dosen_count,
+            'prodi_count' => $prodi_count,
+            'fakultas_count' => $fakultas_count,
+            'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
+            'kinerja_penelitian_count' => $kinerja_penelitian_count,
+            'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
+            'kinerja_penunjang_count' => $kinerja_penunjang_count,
+        ]);
     }
 
     // Prodi
@@ -68,7 +104,25 @@ class HomeController extends Controller
         $user = Auth::user();
         $type_menu = 'dashboard';
 
-        return view('prodi.dashboard')->with(['user' => $user, 'type_menu' => $type_menu]);
+        $dosen_count = User::where('role', '=', 'dosen')->get()->count();
+        $prodi_count = User::where('role', '=', 'prodi')->get()->count();
+        $fakultas_count = User::where('role', '=', 'fakultas')->get()->count();
+        $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
+
+        return view('prodi.dashboard')->with([
+            'user' => $user,
+            'type_menu' => $type_menu,
+            'dosen_count' => $dosen_count,
+            'prodi_count' => $prodi_count,
+            'fakultas_count' => $fakultas_count,
+            'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
+            'kinerja_penelitian_count' => $kinerja_penelitian_count,
+            'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
+            'kinerja_penunjang_count' => $kinerja_penunjang_count,
+        ]);
     }
 
     // Dosen
@@ -85,6 +139,26 @@ class HomeController extends Controller
         $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
 
         return view('dosen.dashboard')->with([
+            'user' => $user,
+            'type_menu' => $type_menu,
+            'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
+            'kinerja_penelitian_count' => $kinerja_penelitian_count,
+            'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
+            'kinerja_penunjang_count' => $kinerja_penunjang_count,
+        ]);
+    }
+
+    public function mahasiswa()
+    {
+        $user = Auth::user();
+        $type_menu = 'dashboard';
+
+        $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->where('user_id', '=', $user['id'])->get()->count();
+        $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
+
+        return view('mahasiswa.dashboard')->with([
             'user' => $user,
             'type_menu' => $type_menu,
             'kinerja_pendidikan_count' => $kinerja_pendidikan_count,

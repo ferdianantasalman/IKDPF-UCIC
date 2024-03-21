@@ -77,7 +77,7 @@ class KinerjaController extends Controller
             'tahun_akademik' => 'required',
 
         ], [
-            'jenis_kegiatan.required' => 'nama kategori wajib diisi',
+            'jenis_kegiatan.required' => 'jenis kegiatan wajib diisi',
             'data_pendukung.required' => 'data_pendukung kategori wajib diisi',
             'sks.required' => 'sks kategori wajib diisi',
             'pelaksanaan.required' => 'pelaksanaan kategori wajib diisi',

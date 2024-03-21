@@ -48,7 +48,7 @@
                                                 <th>Sertifikat</th>
                                                 <th>Data Sertifikat</th>
                                                 <th>NIDN</th>
-                                                <th>Data NIDN</th>
+                                                <th>Perolehan NIDN</th>
                                                 <th>Prodi</th>
                                                 <th>Fungsional</th>
                                                 <th>Tmt Fungsional</th>
@@ -59,6 +59,9 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $dt)
+                                                @php
+                                                    \Carbon\Carbon::setLocale('id');
+                                                @endphp
                                                 <tr>
                                                     <td class="text-center">{{ $loop->index + 1 }}.</td>
                                                     <td>
@@ -72,12 +75,15 @@
                                                     <td>{{ $dt->no_sertifikat ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->data_sertifikat ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->nidn ?: 'Belum terisi' }}</td>
-                                                    <td>{{ $dt->tgl_nidn ?: 'Belum terisi' }}</td>
+                                                    <td>{{ $dt->tgl_nidn ? \Carbon\Carbon::parse($dt->tgl_nidn)->translatedFormat('d F Y') : 'Belum terisi' }}
+                                                    </td>
                                                     <td>{{ $dt->prodi ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->fungsional ?: 'Belum terisi' }}</td>
-                                                    <td>{{ $dt->tgl_fungsional ?: 'Belum terisi' }}</td>
+                                                    <td>{{ $dt->tgl_fungsional ? \Carbon\Carbon::parse($dt->tgl_fungsional)->translatedFormat('d F Y') : 'Belum terisi' }}
+                                                    </td>
                                                     <td>{{ $dt->golongan ?: 'Belum terisi' }}</td>
-                                                    <td>{{ $dt->tgl_golongan ?: 'Belum terisi' }}</td>
+                                                    <td>{{ $dt->tgl_golongan ? \Carbon\Carbon::parse($dt->tgl_golongan)->translatedFormat('d F Y') : 'Belum terisi' }}
+                                                    </td>
                                                     <td>
                                                         <div class="btn-group btn-group-sm">
                                                             <a href="{{ route('data_dosen.edit', $dt->id) }}"
