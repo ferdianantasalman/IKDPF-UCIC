@@ -15,11 +15,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Hasil Penilaian Mahasiswa</h1>
+                <h1>Data Semester</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item"><a href="/admin/hasil_mahasiswa">Pertanyaan</a></div>
+                    <div class="breadcrumb-item"><a href="/admin/dashboard">Master Data</a></div>
                     {{-- <div class="breadcrumb-item active"><a href="#">Data Dosen</a></div> --}}
-                    <div class="breadcrumb-item">Hasil Penilaian Mahasiswa</div>
+                    <div class="breadcrumb-item">Data Semester</div>
                 </div>
             </div>
 
@@ -28,44 +28,44 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <div class="card-header">
+                                <a href="semester/create" class="btn btn-primary">Tambah Data</a>
+                            </div>
+                            {{-- <div class="card-header">
+                                <h4>Data Dosen</h4>
+                            </div> --}}
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table-striped table" id="table-1">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
-                                                <th>User</th>
-                                                <th>Nilai</th>
-                                                <th>Pertanyaan</th>
+                                                <th class="text-center">
+                                                    No
+                                                </th>
+                                                <th>Nama</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($results as $result)
+                                            @foreach ($data as $dt)
                                                 <tr>
-                                                    <td>{{ $loop->index + 1 }}.</td>
-                                                    <td>{{ $result->user->name }}</td>
-                                                    <td>{{ $result->total_points }}</td>
-                                                    <td>
-                                                        @foreach ($result->questions as $question)
-                                                            <span>{{ $question->question_text }}, </span>
-                                                        @endforeach
-                                                    </td>
+                                                    <td class="text-center">{{ $loop->index + 1 }}.</td>
+                                                    <td>{{ $dt->name }}</td>
+                                                    <td>{{ $dt->status }}</td>
                                                     <td>
                                                         <div class="btn-group btn-group-sm">
-                                                            <a href="{{ route('results.show', $result->id) }}"
-                                                                class="btn btn-success">
-                                                                <i class="fa fa-eye"></i>
-                                                            </a>
-                                                            <form onclick="return confirm('are you sure ? ')"
-                                                                class="d-inline"
-                                                                action="{{ route('results.destroy', $result->id) }}"
+                                                            <a href="{{ route('semester.edit', $dt->id) }}"
+                                                                class="btn btn-icon btn-primary"><i
+                                                                    class="fas fa-edit"></i></a>
+                                                            <form action="{{ route('semester.destroy', $dt->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="btn btn-danger"
-                                                                    style="border-top-left-radius: 0;border-bottom-left-radius: 0;">
-                                                                    <i class="fa fa-trash"></i>
+                                                                <button type="submit"
+                                                                    onclick="javascript: return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                                    class="btn btn-icon btn-primary ms-3">
+                                                                    <i class="fas fa-trash"></i>
                                                                 </button>
                                                             </form>
                                                         </div>

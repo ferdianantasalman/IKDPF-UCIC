@@ -15,4 +15,14 @@ class Kinerja extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class);
+    }
+
+    public function tahun_akademik()
+    {
+        return $this->belongsTo(TahunAkademik::class);
+    }
 }

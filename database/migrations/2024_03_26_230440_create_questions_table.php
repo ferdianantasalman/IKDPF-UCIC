@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Models\Semester;
+use App\Models\TahunAkademik;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            // $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate();
             $table->longText('question_text');
-            $table->string('pelaksanaan');
-            $table->string('tahun_akademik');
+            $table->foreignIdFor(Semester::class)->constrained()->cascadeOnUpdate();
+            $table->foreignIdFor(TahunAkademik::class)->constrained()->cascadeOnUpdate();
             $table->enum('tipe', ['jawaban', 'pilihan']);
             $table->enum('status', ['atasan', 'mahasiswa']);
             $table->timestamps();

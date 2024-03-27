@@ -17,11 +17,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tambah Data Pertanyaan Atasan</h1>
+                <h1>Edit Data Program Studi</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Pertanyaan</a></div>
-                    <div class="breadcrumb-item"><a href="#">Data Kinerja Penunjang</a></div>
-                    <div class="breadcrumb-item">Tambah Data</div>
+                    <div class="breadcrumb-item active"><a href="/admin/dashboard">Master Data</a></div>
+                    <div class="breadcrumb-item"><a href="/admin/tahun_akademik">Data Tahun Akademik</a></div>
+                    <div class="breadcrumb-item">Edit Data</div>
                 </div>
             </div>
 
@@ -32,41 +32,27 @@
                         <div class="card">
 
                             <div class="card-body">
-                                <form action="/admin/pertanyaan_atasan" method="POST">
+                                <form action="{{ route('tahun_akademik.update', $data->id) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-group">
-                                        <label>Pertanyaan</label>
+                                        <label>Nama</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="question_text"
-                                                name="question_text" placeholder="Masukkan pertanyaan.....">
+                                            <div class="input-group-prepend">
+                                            </div>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Masukkan Nama....." value="{{ old('name', $data->name) }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Pelaksanaan</label>
-                                        <select class="form-control selectric" name="pelaksanaan" id="pelaksanaan">
-                                            @foreach ($semester as $smstr)
-                                                <option value="{{ $smstr->id }}">{{ $smstr->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tahun Akademik</label>
-                                        <select class="form-control selectric" name="tahun_akademik" id="tahun_akademik">
-                                            @foreach ($tahun_akademik as $thn_akdmk)
-                                                <option value="{{ $thn_akdmk->id }}">{{ $thn_akdmk->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tipe Jawaban</label>
-                                        <select class="form-control selectric" name="tipe" id="tipe">
-                                            <option value="" @readonly(true)>Pilih Jawaban</option>
-                                            <option value="jawaban">Jawaban Singkat</option>
-                                            <option value="pilihan">Pilihan</option>
+                                        <label>Status</label>
+                                        <select class="form-control selectric" name="status" id="status">
+                                            <option value="aktif">Aktif</option>
+                                            <option value="nonaktif">Tidak Aktif</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="/admin/pertanyaan_atasan" class="btn btn-primary">Kembali</a>
+                                    <a href="/admin/tahun_akademik" class="btn btn-primary">Kembali</a>
                                 </form>
                             </div>
                         </div>

@@ -28,8 +28,6 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
-                            {{-- <h6 style="margin-left: 30px; margin-top: 20px;">Pertanyaan : </h6> --}}
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table-striped table" id="table-1">
@@ -38,9 +36,7 @@
                                                 <th>No</th>
                                                 <th>User</th>
                                                 <th>Nilai</th>
-                                                <th>Kategori</th>
                                                 <th>Pertanyaan</th>
-                                                {{-- <th>Jawaban</th> --}}
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -49,28 +45,18 @@
                                                 <tr>
                                                     <td>{{ $loop->index + 1 }}.</td>
                                                     <td>{{ $result->user->name }}</td>
-                                                    <td>{{ $result->category }}</td>
                                                     <td>{{ $result->total_points }}</td>
                                                     <td>
                                                         @foreach ($result->questions as $question)
                                                             <span>{{ $question->question_text }}, </span>
                                                         @endforeach
                                                     </td>
-                                                    {{-- <td>{{ $result->options }}</td> --}}
-                                                    {{-- <td>
-                                    @foreach ($result->questions as $key => $question)
-                                        <span class="badge badge-info">{{ $question->question_text }}</span>
-                                    @endforeach
-                                </td> --}}
                                                     <td>
                                                         <div class="btn-group btn-group-sm">
                                                             <a href="{{ route('results.show', $result->id) }}"
                                                                 class="btn btn-success">
                                                                 <i class="fa fa-eye"></i>
                                                             </a>
-                                                            {{-- <a href="{{ route('results.edit', $result->id) }}" class="btn btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </a> --}}
                                                             <form onclick="return confirm('are you sure ? ')"
                                                                 class="d-inline"
                                                                 action="{{ route('results.destroy', $result->id) }}"

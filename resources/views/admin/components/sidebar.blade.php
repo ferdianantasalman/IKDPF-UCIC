@@ -11,7 +11,7 @@
             <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/dashboard"><i class="far fa-fire"></i> <span>Dashboard</span></a>
             </li>
-            <li class="menu-header">Menu</li>
+            <li class="menu-header">Master Data</li>
             <li class="nav-item dropdown {{ $type_menu === 'master' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Master Data</span></a>
                 <ul class="dropdown-menu">
@@ -23,6 +23,12 @@
                     </li>
                     <li class="{{ Request::is('auth-login2') ? 'active' : '' }}">
                         <a class="beep beep-sidebar" href="/admin/data_dosen">Data Dosen</a>
+                    </li>
+                    <li class="{{ Request::is('auth-login2') ? 'active' : '' }}">
+                        <a class="beep beep-sidebar" href="/admin/semester">Data Semester</a>
+                    </li>
+                    <li class="{{ Request::is('auth-login2') ? 'active' : '' }}">
+                        <a class="beep beep-sidebar" href="/admin/tahun_akademik">Data Tahun Akademik</a>
                     </li>
                 </ul>
             </li>
@@ -46,16 +52,22 @@
             </li>
             <li class="nav-item dropdown {{ $type_menu === 'kinerja' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i>
-                    <span>Penilaian</span></a>
+                    <span>Quisioner</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
-                        <a class="nav-link" href="/admin/pertanyaan_atasan">Penilaian Atasan</a>
+                        <a class="nav-link" href="/admin/pertanyaan_atasan">Pertanyaan Atasan</a>
                     </li>
                     <li class="{{ Request::is('features-post-create') ? 'active' : '' }}">
-                        <a class="nav-link" href="/admin/pertanyaan_mahasiswa">Penilaian Mahasiswa</a>
+                        <a class="nav-link" href="/admin/pertanyaan_mahasiswa">Pertanyaan Mahasiswa</a>
                     </li>
                     <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
-                        <a class="nav-link" href="/admin/hasil_atasan">Hasil Penilaian Atasan</a>
+                        <a class="nav-link" href="/admin/hasil_atasan">Jawaban Penilaian Atasan</a>
+                    </li>
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/hasil_mahasiswa">Jawaban Penilaian Mahasiswa</a>
+                    </li>
+                    <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/hasil_mahasiswa">Hasil Penilaian Mahasiswa</a>
                     </li>
                     <li class="{{ Request::is('features-activities') ? 'active' : '' }}">
                         <a class="nav-link" href="/admin/hasil_mahasiswa">Hasil Penilaian Mahasiswa</a>

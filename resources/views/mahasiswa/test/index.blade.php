@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('mahasiswa.layouts.app')
 
 @section('title', 'DataTables')
 
@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="{{ asset('assets_admin/library/datatables/media/css/jquery.dataTables.min.css') }}">
 @endpush
 
-@section('content-admin')
+@section('content-mahasiswa')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Hasil Penilaian Mahasiswa</h1>
+                <h1>Data Kuisioner Mahasiswa</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item"><a href="/admin/hasil_mahasiswa">Pertanyaan</a></div>
+                    <div class="breadcrumb-item"><a href="/admin/hasil_penilaian">Data Kuisioner</a></div>
                     {{-- <div class="breadcrumb-item active"><a href="#">Data Dosen</a></div> --}}
-                    <div class="breadcrumb-item">Hasil Penilaian Mahasiswa</div>
+                    <div class="breadcrumb-item">Penilaian Mahasiswa</div>
                 </div>
             </div>
 
@@ -28,15 +28,21 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+
+                            {{-- <h6 style="margin-left: 30px; margin-top: 20px;">Pertanyaan : </h6> --}}
+
+                            <div class="card-header">
+                                <a href="penilaian/create" class="btn btn-primary">Mulai Kuisioner</a>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table-striped table" id="table-1">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>User</th>
                                                 <th>Nilai</th>
                                                 <th>Pertanyaan</th>
+                                                <th>Jawaban</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -44,28 +50,27 @@
                                             @foreach ($results as $result)
                                                 <tr>
                                                     <td>{{ $loop->index + 1 }}.</td>
-                                                    <td>{{ $result->user->name }}</td>
                                                     <td>{{ $result->total_points }}</td>
                                                     <td>
                                                         @foreach ($result->questions as $question)
                                                             <span>{{ $question->question_text }}, </span>
                                                         @endforeach
                                                     </td>
+                                                    <td>jawaban</td>
                                                     <td>
                                                         <div class="btn-group btn-group-sm">
-                                                            <a href="{{ route('results.show', $result->id) }}"
-                                                                class="btn btn-success">
-                                                                <i class="fa fa-eye"></i>
-                                                            </a>
-                                                            <form onclick="return confirm('are you sure ? ')"
-                                                                class="d-inline"
-                                                                action="{{ route('results.destroy', $result->id) }}"
+                                                            <a href="{{ route('admin.pertanyaan_mahasiswa.edit', $dt->id) }}"
+                                                                class="btn btn-icon btn-primary"><i
+                                                                    class="fas fa-eye"></i></a>
+                                                            <form
+                                                                action="{{ route('admin.pertanyaan_mahasiswa.destroy', $dt->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="btn btn-danger"
-                                                                    style="border-top-left-radius: 0;border-bottom-left-radius: 0;">
-                                                                    <i class="fa fa-trash"></i>
+                                                                <button type="submit"
+                                                                    onclick="javascript: return confirm('Apakah anda yakin ingin menghapus data ini ?')"
+                                                                    class="btn btn-icon btn-primary ms-3">
+                                                                    <i class="fas fa-trash"></i>
                                                                 </button>
                                                             </form>
                                                         </div>

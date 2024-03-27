@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -12,15 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kinerjas', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
+            // $table->enum('status', ['atasan', 'mahasiswa']);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate();
-            $table->string('jenis_kegiatan');
-            $table->string('data_pendukung');
-            $table->integer('sks');
-            $table->string('pelaksanaan');
-            $table->string('tahun_akademik');
-            $table->enum('status', ['pendidikan', 'penelitian', 'pengabdian', 'penunjang']);
+            $table->integer('total_points')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kinerjas');
+        Schema::dropIfExists('results');
     }
 };

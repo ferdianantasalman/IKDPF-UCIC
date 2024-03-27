@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kinerja;
+use App\Models\Result;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -153,18 +154,12 @@ class HomeController extends Controller
         $user = Auth::user();
         $type_menu = 'dashboard';
 
-        $kinerja_pendidikan_count = Kinerja::where('status', '=', 'pendidikan')->where('user_id', '=', $user['id'])->get()->count();
-        $kinerja_penelitian_count = Kinerja::where('status', '=', 'penelitian')->where('user_id', '=', $user['id'])->get()->count();
-        $kinerja_pengabdian_count = Kinerja::where('status', '=', 'pengabdian')->where('user_id', '=', $user['id'])->get()->count();
-        $kinerja_penunjang_count = Kinerja::where('status', '=', 'penunjang')->where('user_id', '=', $user['id'])->get()->count();
+        $penilaian_mahasiswa = Result::where('category', '=', 'mahasiswa')->where('user_id', '=', $user['id'])->get()->count();
 
         return view('mahasiswa.dashboard')->with([
             'user' => $user,
             'type_menu' => $type_menu,
-            'kinerja_pendidikan_count' => $kinerja_pendidikan_count,
-            'kinerja_penelitian_count' => $kinerja_penelitian_count,
-            'kinerja_pengabdian_count' => $kinerja_pengabdian_count,
-            'kinerja_penunjang_count' => $kinerja_penunjang_count,
+            'penilaian_mahasiswa' => $penilaian_mahasiswa,
         ]);
     }
 }

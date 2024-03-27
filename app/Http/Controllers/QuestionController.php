@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Semester;
+use App\Models\TahunAkademik;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,15 +25,51 @@ class QuestionController extends Controller
         return view('admin.question.index', compact('user', 'data', 'type_menu'));
     }
 
-    public function index_atasan(): View
+    public function index_atasan(Request $request): View
     {
         $user = auth()->user();
 
-        $data = Question::where('status', '=', "atasan")->get();
+        // $data = Question::where('status', '=', "atasan")->get();
+
+        $query = Question::query();
+
+        // $data->where('status', '=', "atasan")->get();
+
+        $semester = Semester::all();
+
+        $tahun_akademik = TahunAkademik::all();
 
         $type_menu = 'dashboard';
 
-        return view('admin.question_atasan.index', compact('user', 'data', 'type_menu'));
+        // dd($request->input('tahun_akademik'));
+
+        if ($request->has('semester')) {
+            $query->where('semester_id', $request->input('semester'));
+        }
+
+        if ($request->has('tahun_akademik')) {
+            $query->where('tahun_akademik_id', $request->input('tahun_akademik'));
+        }
+
+        if ($request->has('tahun_akademik') || $request->has('semester')) {
+            $query->where('status', '=', "atasan");
+
+            // $query->where('tahun_akademik_id', $request->input('tahub_akademik'))->get();
+        }
+
+        $data = $query->get();
+        // Fetch products
+        // $data = $query->where('status', '=', "atasan")->get();
+
+        // $data->when($request->semester, function ($query) use ($request) {
+        //     return $query->where('semester_id', '=' . $request->semester);
+        // });
+
+        // $data->when($request->tahun_akademik, function ($query) use ($request) {
+        //     return $query->where('tahun_akademik_id', '=', $request->tahun_akademik);
+        // });
+
+        return view('admin.question_atasan.index', compact('user', 'data', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     public function index_mahasiswa(): View
@@ -40,9 +78,13 @@ class QuestionController extends Controller
 
         $data = Question::where('status', '=', "mahasiswa")->get();
 
+        $semester = Semester::all();
+
+        $tahun_akademik = TahunAkademik::all();
+
         $type_menu = 'dashboard';
 
-        return view('admin.question_mahasiswa.index', compact('user', 'data', 'type_menu'));
+        return view('admin.question_mahasiswa.index', compact('user', 'data', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     /**
@@ -61,18 +103,26 @@ class QuestionController extends Controller
     {
         $user = auth()->user();
 
+        $semester = Semester::where('status', '=', 'aktif')->get();
+
+        $tahun_akademik = TahunAkademik::where('status', '=', 'aktif')->get();
+
         $type_menu = 'dashboard';
 
-        return view('admin.question_atasan.create', compact('user', 'type_menu'));
+        return view('admin.question_atasan.create', compact('user', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     public function create_mahasiswa(): View
     {
         $user = auth()->user();
 
+        $semester = Semester::where('status', '=', 'aktif')->get();
+
+        $tahun_akademik = TahunAkademik::where('status', '=', 'aktif')->get();
+
         $type_menu = 'dashboard';
 
-        return view('admin.question_mahasiswa.create', compact('user', 'type_menu'));
+        return view('admin.question_mahasiswa.create', compact('user', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     /**
@@ -140,8 +190,8 @@ class QuestionController extends Controller
         $data = [
             'user_id' => $user['id'],
             'question_text' => $request->input('question_text'),
-            'pelaksanaan' => $request->input('pelaksanaan'),
-            'tahun_akademik' => $request->input('tahun_akademik'),
+            'semester_id' => $request->input('pelaksanaan'),
+            'tahun_akademik_id' => $request->input('tahun_akademik'),
             'tipe' => $request->input('tipe'),
             'status' => 'atasan',
         ];
@@ -178,8 +228,8 @@ class QuestionController extends Controller
         $data = [
             'user_id' => $user['id'],
             'question_text' => $request->input('question_text'),
-            'pelaksanaan' => $request->input('pelaksanaan'),
-            'tahun_akademik' => $request->input('tahun_akademik'),
+            'semester_id' => $request->input('pelaksanaan'),
+            'tahun_akademik_id' => $request->input('tahun_akademik'),
             'tipe' => $request->input('tipe'),
             'status' => 'mahasiswa',
         ];
@@ -223,6 +273,7 @@ class QuestionController extends Controller
 
         $data = Question::findOrFail($id);
 
+
         $type_menu = 'dashboard';
 
         return view('admin.question.edit', compact('user', 'data', 'type_menu'));
@@ -234,9 +285,13 @@ class QuestionController extends Controller
 
         $data = Question::findOrFail($id);
 
+        $semester = Semester::where('status', '=', 'aktif')->get();
+
+        $tahun_akademik = TahunAkademik::where('status', '=', 'aktif')->get();
+
         $type_menu = 'dashboard';
 
-        return view('admin.question_atasan.edit', compact('user', 'data', 'type_menu'));
+        return view('admin.question_atasan.edit', compact('user', 'data', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     public function edit_mahasiswa($id): View
@@ -245,9 +300,13 @@ class QuestionController extends Controller
 
         $data = Question::findOrFail($id);
 
+        $semester = Semester::where('status', '=', 'aktif')->get();
+
+        $tahun_akademik = TahunAkademik::where('status', '=', 'aktif')->get();
+
         $type_menu = 'dashboard';
 
-        return view('admin.question_mahasiswa.edit', compact('user', 'data', 'type_menu'));
+        return view('admin.question_mahasiswa.edit', compact('user', 'data', 'type_menu', 'semester', 'tahun_akademik'));
     }
 
     /**
@@ -275,8 +334,8 @@ class QuestionController extends Controller
         $data = [
             'user_id' => $user['id'],
             'question_text' => $request->input('question_text'),
-            'pelaksanaan' => $request->input('pelaksanaan'),
-            'tahun_akademik' => $request->input('tahun_akademik'),
+            'semester_id' => $request->input('pelaksanaan'),
+            'tahun_akademik_id' => $request->input('tahun_akademik'),
             'tipe' => $request->input('tipe'),
             'status' => $request->input('status'),
         ];
@@ -315,8 +374,8 @@ class QuestionController extends Controller
         $data = [
             'user_id' => $user['id'],
             'question_text' => $request->input('question_text'),
-            'pelaksanaan' => $request->input('pelaksanaan'),
-            'tahun_akademik' => $request->input('tahun_akademik'),
+            'semester_id' => $request->input('pelaksanaan'),
+            'tahun_akademik_id' => $request->input('tahun_akademik'),
             'tipe' => $request->input('tipe'),
             'status' => 'atasan',
         ];
@@ -355,8 +414,8 @@ class QuestionController extends Controller
         $data = [
             'user_id' => $user['id'],
             'question_text' => $request->input('question_text'),
-            'pelaksanaan' => $request->input('pelaksanaan'),
-            'tahun_akademik' => $request->input('tahun_akademik'),
+            'semester_id' => $request->input('pelaksanaan'),
+            'tahun_akademik_id' => $request->input('tahun_akademik'),
             'tipe' => $request->input('tipe'),
             'status' => 'mahasiswa',
         ];

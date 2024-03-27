@@ -44,23 +44,24 @@
                                     <div class="form-group">
                                         <label>Pelaksanaan</label>
                                         <select class="form-control selectric" name="pelaksanaan" id="pelaksanaan">
-                                            <option value="Semester Gasal">Semester Gasal</option>
-                                            <option value="Semester Genap">Semester Genap</option>
+                                            @foreach ($semester as $smstr)
+                                                <option value="{{ $smstr->id }}">{{ $smstr->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Tahun Akademik</label>
                                         <select class="form-control selectric" name="tahun_akademik" id="tahun_akademik">
-                                            <option value="2021/2022">2021/2022</option>
-                                            <option value="2022/2023">2022/2023</option>
-                                            <option value="2023/2024">2023/2024</option>
-                                            <option value="2024/2025">2024/2025</option>
+                                            @foreach ($tahun_akademik as $thn_akdmk)
+                                                <option value="{{ $thn_akdmk->id }}">{{ $thn_akdmk->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Tipe Jawaban</label>
                                         <select class="form-control selectric" name="tipe" id="tipe">
-                                            <option value="jawaban">Jawaban</option>
+                                            <option value="" @readonly(true)>Pilih Jawaban</option>
+                                            <option value="jawaban">Jawaban Singkat</option>
                                             <option value="pilihan">Pilihan</option>
                                         </select>
                                     </div>

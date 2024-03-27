@@ -24,55 +24,10 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Kinerja Pendidikan</h4>
+                                <h4>Total Penilaian</h4>
                             </div>
                             <div class="card-body">
-                                {{ $kinerja_pendidikan_count }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-danger">
-                            <i class="far fa-file"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Kinerja Penelitian</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $kinerja_penelitian_count }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Kinerja Pengabdian</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $kinerja_pengabdian_count }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Kinerja Penunjang</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $kinerja_penunjang_count }}
+                                {{ $penilaian_mahasiswa }}
                             </div>
                         </div>
                     </div>

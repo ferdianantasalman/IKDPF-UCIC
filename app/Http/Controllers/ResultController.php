@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Result;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
@@ -30,7 +32,11 @@ class ResultController extends Controller
 
         $results = Result::where('category', '=', 'atasan')->get();
 
-        return view('admin.result_atasan.index', compact('user', 'type_menu', 'results'));
+        if ($user->role == "admin") {
+            return view('admin.result_atasan.index', compact('user', 'type_menu', 'results'));
+        } else {
+            return view('mahasiswa.test.index', compact('user', 'type_menu', 'results'));
+        }
     }
 
     public function index_mahasiswa()
@@ -41,7 +47,11 @@ class ResultController extends Controller
 
         $results = Result::where('category', '=', 'mahasiswa')->get();
 
-        return view('admin.result_mahasiswa.index', compact('user', 'type_menu', 'results'));
+        if ($user->role == "admin") {
+            return view('admin.result_atasan.index', compact('user', 'type_menu', 'results'));
+        } else {
+            return view('mahasiswa.test.index', compact('user', 'type_menu', 'results'));
+        }
     }
 
     /**
@@ -69,9 +79,37 @@ class ResultController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Result $result)
+    public function show($id)
     {
-        //
+        $user = auth()->user();
+
+        $result = Result::findOrFail($id);
+
+        $type_menu = 'dashboard';
+
+        return view('admin.result.detail', compact('user', 'results', 'typer_menu'));
+    }
+
+    public function show_atasan($id)
+    {
+        $user = auth()->user();
+
+        $result = Result::findOrFail($id);
+
+        $type_menu = 'dashboard';
+
+        return view('admin.result_atasan.detail', compact('user', 'results', 'typer_menu'));
+    }
+
+    public function show_mahasiswa($id)
+    {
+        $user = auth()->user();
+
+        $result = Result::findOrFail($id);
+
+        $type_menu = 'dashboard';
+
+        return view('admin.result_mahasiswa.detail', compact('user', 'results', 'typer_menu'));
     }
 
     /**
@@ -96,5 +134,41 @@ class ResultController extends Controller
     public function destroy(Result $result)
     {
         //
+    }
+
+    public function destroy_atasan($id): RedirectResponse
+    {
+        $result = Result::findOrFail($id);
+
+        $result->delete();
+
+        $user = auth()->user();
+
+        $type_menu = 'dashboard';
+
+        return redirect('/admin/hasil_atasan')->with([
+            'message' => 'Kinerja Pengabdian berhasil dihapus !',
+            'alert-type' => 'success',
+            'user' => $user,
+            'type_menu' => $type_menu,
+        ]);
+    }
+
+    public function destroy_mahasiswa($id): RedirectResponse
+    {
+        $result = Result::findOrFail($id);
+
+        $result->delete();
+
+        $user = auth()->user();
+
+        $type_menu = 'dashboard';
+
+        return redirect('/admin/hasil_atasan')->with([
+            'message' => 'Kinerja Pengabdian berhasil dihapus !',
+            'alert-type' => 'success',
+            'user' => $user,
+            'type_menu' => $type_menu,
+        ]);
     }
 }

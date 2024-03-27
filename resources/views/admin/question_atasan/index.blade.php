@@ -28,13 +28,36 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
-                            {{-- <h6 style="margin-left: 30px; margin-top: 20px;">Pertanyaan : </h6> --}}
-
-                            <div class="card-header">
-                                <a href="pertanyaan_atasan/create" class="btn btn-primary">Tambah Data</a>
-                            </div>
+                            <form action="/admin/pertanyaan_atasan" method="GET">
+                                {{-- @csrf --}}
+                                <div class="row">
+                                    <div class="form-group" style="margin-left: 30px; margin-top: 20px;">
+                                        <label>Semester</label>
+                                        <select class="form-control selectric" name="semester" id="semester">
+                                            <option value="" @readonly(true)>Pilih Semester</option>
+                                            @foreach ($semester as $smstr)
+                                                <option value="{{ $smstr->id }}">{{ $smstr->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <h6 style="margin-left: 20px; margin-top: 30px;">--</h6>
+                                    <div class="form-group" style="margin-left: 30px; margin-top: 20px;">
+                                        <label>Tahun Akademik</label>
+                                        <select class="form-control selectric" name="tahun_akademik" id="tahun_akademik">
+                                            <option value="" @readonly(true)>Pilih Tahun Akademik</option>
+                                            @foreach ($tahun_akademik as $tahun)
+                                                <option value="{{ $tahun->id }}">{{ $tahun->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button style="width: 120px; height: 30px; margin-top: 55px; margin-left: 15px"
+                                        type="submit" class="btn btn-primary">Cari Data</button>
+                                </div>
+                            </form>
                             <div class="card-body">
+                                <a href="pertanyaan_atasan/create" style="margin-bottom: 20px;"
+                                    class="btn btn-primary">Tambah Data</a>
+
                                 <div class="table-responsive">
                                     <table class="table-striped table" id="table-1">
                                         <thead>
@@ -43,7 +66,7 @@
                                                     No
                                                 </th>
                                                 <th>Pertanyaan</th>
-                                                <th>Pelaksanaan</th>
+                                                <th>Semester</th>
                                                 <th>Tahun Akademik</th>
                                                 <th>Tipe Jawaban</th>
                                                 <th>Aksi</th>
@@ -53,18 +76,11 @@
                                             @foreach ($data as $dt)
                                                 <tr>
                                                     <td class="text-center">{{ $loop->index + 1 }}.</td>
-                                                    {{-- @if ($dt->tipe == 'pilihan')
-                                                        <td><a
-                                                                href="{{ route('admin.jawaban_pertanyaan', $dt->id) }}">{{ $dt->question_text ?: 'Belum terisi' }}</a>
-                                                        </td>
-                                                    @else
-                                                        <td>{{ $dt->question_text ?: 'Belum terisi' }}</td>
-                                                    @endif --}}
                                                     <td><a
                                                             href="{{ route('admin.jawaban_pertanyaan', $dt->id) }}">{{ $dt->question_text ?: 'Belum terisi' }}</a>
                                                     </td>
-                                                    <td>{{ $dt->pelaksanaan ?: 'Belum terisi' }}</td>
-                                                    <td>{{ $dt->tahun_akademik ?: 'Belum terisi' }}</td>
+                                                    <td>{{ $dt->semester->name ?: 'Belum terisi' }}</td>
+                                                    <td>{{ $dt->tahun_akademik->name ?: 'Belum terisi' }}</td>
                                                     <td>{{ $dt->tipe ?: 'Belum terisi' }}</td>
                                                     <td>
                                                         <div class="btn-group btn-group-sm">

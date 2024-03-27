@@ -17,10 +17,10 @@
                         Diri</span></a>
             </li>
             <li class="nav-item dropdown {{ $type_menu === 'kinerja' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Penilaian</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Kuisioner</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('auth-forgot-password') ? 'active' : '' }}">
-                        <a href="/mahasiswa/kinerja_pendidikan">Penilaian Dosen</a>
+                        <a href="/mahasiswa/hasil_penilaian">Kuisioner Dosen</a>
                     </li>
                 </ul>
             </li>
